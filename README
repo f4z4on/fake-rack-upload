@@ -1,3 +1,5 @@
 A simple example showing how to use Rack::MockRequest to test file
 upload. This is a example to respond to StackOverflow question
 http://stackoverflow.com/q/25475912/1254808.
+
+To verify that it is working, run fake_rack_upload_test.rb.
