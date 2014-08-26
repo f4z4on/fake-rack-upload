@@ -10,7 +10,8 @@ def request_via_API app, method, path, params={}
 end
 
 res = request_via_API FakeRackUpload.new, 'POST', '/',
-  file: Rack::Multipart::UploadedFile.new('README')
+  description: 'A README file',
+  text_source: Rack::Multipart::UploadedFile.new('README')
 
 if res[2][0] == File.read('README')
   print '.'

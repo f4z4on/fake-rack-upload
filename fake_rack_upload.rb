@@ -9,13 +9,13 @@ class FakeRackUpload
     end
 
     multipart = Rack::Multipart.parse_multipart env
-    file_info = multipart[multipart.keys.first]
+    file_info = multipart.values.find {|f| f.is_a? Hash and f.key? :tempfile }
     body = file_info[:tempfile].read
     file_info[:tempfile].close
     file_info[:tempfile].unlink
 
     ['500',
-     {'Content-Type' => file_info[:type],
+     {'Content-Type' => file_info[:type].to_s,
       'Content-Length' => body.bytesize.to_s},
      [body]]
   end
